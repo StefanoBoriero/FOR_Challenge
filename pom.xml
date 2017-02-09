@@ -7,6 +7,18 @@
     <groupId>it.polimi.for</groupId>
     <artifactId>boriero_brunitti_fm_666</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -16,5 +28,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
 
 </project>

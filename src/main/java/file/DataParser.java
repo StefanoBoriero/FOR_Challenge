@@ -116,7 +116,7 @@ public class DataParser {
         ArrayNodeCollection coll = ArrayNodeCollection.getInstance();
         while( counter < non )
         {
-            Node n = new Node(coordX[counter], coordY[counter]);
+            Node n = new Node(counter, coordX[counter], coordY[counter]);
            coll.add(counter, n);
             counter++;
         }

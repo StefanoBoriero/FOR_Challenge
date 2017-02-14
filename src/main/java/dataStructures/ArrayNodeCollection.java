@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ArrayNodeCollection {
     private static ArrayNodeCollection instance;
-    List<Node> nodes;
+    private List<Node> nodes;
 
     public ArrayNodeCollection()
     {
@@ -29,6 +29,11 @@ public class ArrayNodeCollection {
     public void add(int index, Node n)
     {
         nodes.add(index, n);
+    }
+    
+    public List<Node> getNodes()
+    {
+    	return this.nodes;
     }
 
 

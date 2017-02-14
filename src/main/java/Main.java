@@ -2,6 +2,7 @@ import java.util.List;
 
 import dataStructures.ArrayNodeCollection;
 import dataStructures.Node;
+import dataStructures.Parameters;
 import file.DataParser;
 
 /**
@@ -23,5 +24,13 @@ public class Main {
         	System.out.println(n.toString());
         	
         }
-    }
+    
+        for(int i=0; i< Parameters.getNumberOfNodes() + 1; i++)
+        {
+        
+        	for(int j= 0; j< Parameters.getNumberOfNodes()+1; j++)
+        		System.out.print(Parameters.getDanger(i, j) + " ");
+        System.out.println();
+        }
+      }
 }

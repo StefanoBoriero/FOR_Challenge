@@ -33,6 +33,7 @@ public class DataParser {
         parseNumberOfNodes(in);
         parseAlpha(in);
         parseNodes(in);
+        parseDanger(in);
 
 
 
@@ -61,7 +62,7 @@ public class DataParser {
 
         int value = Integer.parseInt(v);
         Parameters.setNumberOfNodes(value);
-
+        Parameters.initDanger(value);
         in.next(); // ;
     }
 
@@ -120,5 +121,26 @@ public class DataParser {
            coll.add(counter, n);
             counter++;
         }
+    }
+    
+    private static void parseDanger(Scanner in)
+    {
+    	Parameters.setDanger(0, 0, 0);
+    	
+    	in.next(); // ;
+        in.next(); // param
+        in.next(); // d
+        in.next(); // [*,*]:
+        for(int i=0; i< Parameters.getNumberOfNodes() + 1; i++)
+        	in.next();
+        in.next(); // :=
+        
+        for(int i=0; i< Parameters.getNumberOfNodes() + 1; i++)
+        {
+        	in.next(); //leggi il numero
+        	for(int j=0; j< Parameters.getNumberOfNodes()+1; j++)
+        			Parameters.setDanger(i, j, Double.parseDouble(in.next()));
+        }
+        
     }
 }

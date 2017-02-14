@@ -23,7 +23,7 @@ public class ArrayArcCollection implements ArcCollection{
         /*
         If going from the head to school through the head is too expensive, arc is not added
          */
-        if ( Parameters.getInstance().getValue("ALPHA") * d2 > arcLenght + d1)
+        if ( Parameters.getAlpha() * d2 > arcLenght + d1)
         {
             arcs.add( new Arc(head, tail));
         }

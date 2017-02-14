@@ -1,8 +1,5 @@
 package dataStructures;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Stefano on 09/02/2017.
  * Class used to store global parameters like:
@@ -10,23 +7,28 @@ import java.util.Map;
  * - alpha
  */
 public class Parameters {
-    private static Parameters instance;
-    Map<String, Double> parameterMap = new HashMap<>();
+    private static int numberOfNodes;
+    private static double alpha;
 
-    public static Parameters getInstance()
+
+    public static void setNumberOfNodes(int non)
     {
-        if(instance == null){
-            instance = new Parameters();
-        }
-        return instance;
+        numberOfNodes = non;
     }
 
-    public void setParameter(String key, Double value)
+    public static int getNumberOfNodes()
     {
-        parameterMap.put(key, value);
+        return numberOfNodes;
     }
 
-    public Double getValue(String key){
-        return parameterMap.get(key);
+    public static void setAlpha(double a)
+    {
+        alpha = a;
     }
+
+    public static double getAlpha()
+    {
+        return alpha;
+    }
+
 }

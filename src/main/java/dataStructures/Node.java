@@ -6,8 +6,9 @@ package dataStructures;
 public class Node {
     public int x;
     public int y;
+    public int index;
 
-    public Node(int x, int y)
+    public Node(int index, int x, int y)
     {
         this.x = x;
         this.y = y;
@@ -19,5 +20,12 @@ public class Node {
         double b = Math.pow( this.y - destination.y, 2);
 
         return Math.sqrt(a+b);
+    }
+
+    @Override
+    public String toString()
+    {
+        String out = "(" + x + "," + y + ")";
+        return out;
     }
 }

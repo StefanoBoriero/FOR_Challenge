@@ -15,4 +15,6 @@ public class Arc {
         this.tail = tail;
         lenght = head.distance(tail);
     }
+
+
 }

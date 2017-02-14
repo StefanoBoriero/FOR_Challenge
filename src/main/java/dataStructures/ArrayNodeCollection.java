@@ -36,5 +36,34 @@ public class ArrayNodeCollection {
     	return this.nodes;
     }
 
+    public void setStars()
+    {
+        for(Node head: nodes)
+        {
+            for(Node tail: nodes)
+            {
+                if(head != tail)
+                {
+                    addToStar(head, tail);
+                }
+            }
+        }
+    }
+    private void addToStar(Node head, Node tail) {
+        double arcLenght = head.distance(tail);
+        double d1 = head.distance( ArrayNodeCollection.getInstance().getNode(0) );
+        double d2 = tail.distance( ArrayNodeCollection.getInstance().getNode(0));
+
+        /*
+        If going from the head to school through the head is too expensive, arc is not added
+         */
+        if ( Parameters.getAlpha() * d2 > arcLenght + d1)
+        {
+            tail.addToForwardStar( head );
+            head.addToBackwardStar( tail );
+            Solution.add(tail.index, head.index);
+        }
+    }
+
 
 }

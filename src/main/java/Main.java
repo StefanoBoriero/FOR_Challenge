@@ -3,6 +3,7 @@ import java.util.List;
 import dataStructures.ArrayNodeCollection;
 import dataStructures.Node;
 import dataStructures.Parameters;
+import dataStructures.Solution;
 import file.DataParser;
 
 /**
@@ -15,16 +16,10 @@ public class Main {
 
         String filename = "pedibus_10.dat";
         DataParser.parse(filename);
-        
-        List<Node> nodes = ArrayNodeCollection.getInstance().getNodes();
-        
-        for (Node n : nodes)
-        {
-        	System.out.print("Node number " + n.index + " ");
-        	System.out.println(n.toString());
-        	
-        }
-    
+
+        //Solution sol = new Solution();
+/*        List<Node> nodes = ArrayNodeCollection.getInstance().getNodes();
+
         for(int i=0; i< Parameters.getNumberOfNodes() + 1; i++)
         {
         
@@ -32,5 +27,21 @@ public class Main {
         		System.out.print(Parameters.getDanger(i, j) + " ");
         System.out.println();
         }
+
+        ArrayNodeCollection.getInstance().setStars();
+
+        for (Node n : nodes)
+        {
+            System.out.print("Node number " + n.index + " ");
+            System.out.print(n.toString());
+            System.out.println( n.printForwardStar() );
+
+        }
+
+*/
+        new Solution();
+        ArrayNodeCollection.getInstance().setStars();
+        Solver.solve();
+        Solution.printMatrix();
       }
 }

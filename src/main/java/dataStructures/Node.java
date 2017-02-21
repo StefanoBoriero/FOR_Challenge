@@ -10,12 +10,12 @@ public class Node {
     public int x;
     public int y;
     public int index;
+    public double distanceFromSchool;
     public List<Node> forwardStar;
     public List<Node> backwardStar;
     public double pathToSchool;
     public boolean isFixed = false;
-    public Node nextNode;
-    public Node previousNode;
+    public boolean isLeaf = false;
 
     public Node(int index, int x, int y)
     {
@@ -25,6 +25,17 @@ public class Node {
 
         this.forwardStar = new ArrayList<>();
         this.backwardStar = new ArrayList<>();
+
+        if(index == 0)
+        {
+            this.distanceFromSchool = 0;
+        }
+        else
+        {
+            this.distanceFromSchool = distance(Parameters.getSchool());
+        }
+
+        this.pathToSchool = distanceFromSchool;
     }
 
     public Double distance(Node destination)
@@ -52,17 +63,6 @@ public class Node {
         return out;
     }
 
-    public String printForwardStar()
-    {
-        String out = "";
-        for(Node n: forwardStar)
-        {
-            out = out + n.index + ", ";
-        }
-
-        return out;
-    }
-
     public void setFixed(Node nextNode)
     {
         isFixed = true;
@@ -71,17 +71,17 @@ public class Node {
 
     public void reduceForwardStar()
     {
-        List<Node> toElimnate = new ArrayList<>();
+        List<Node> toEliminate = new ArrayList<>();
         for(Node n:forwardStar)
         {
-            double lenght = distance(n);
-            if(Parameters.getAlpha() * lenght < lenght + n.pathToSchool)
+            double length = distance(n);
+            if(Parameters.getAlpha() * this.distanceFromSchool < length + n.pathToSchool)
             {
-                toElimnate.add(n);
+                toEliminate.add(n);
             }
         }
 
-        for(Node n: toElimnate)
+        for(Node n: toEliminate)
         {
             forwardStar.remove(n);
         }
@@ -90,11 +90,19 @@ public class Node {
     public void reduceBackwardStar()
     {
         List<Node> toEliminate =  new ArrayList<>();
-        for(Node n: backwardStar)
-        {
-            if( n.isFixed )
-            {
+        for(Node n: backwardStar) {
+            if (n.isFixed) {
                 toEliminate.add(n);
+            }
+            else
+                {
+                double length = distance(n);
+                double alpha = Parameters.getAlpha();
+                double max_feasible = alpha * n.distanceFromSchool;
+                double potential = length + this.pathToSchool;
+                if ( potential > max_feasible ) {
+                    toEliminate.add(n);
+                }
             }
         }
 

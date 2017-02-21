@@ -2,6 +2,7 @@ package file;
 
 import dataStructures.ArrayNodeCollection;
 import dataStructures.Node;
+import dataStructures.NodeCollection;
 import dataStructures.Parameters;
 
 import java.io.FileInputStream;
@@ -9,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Created by Stefano on 10/02/2017.
+ * Utility to parse the .dat file
  */
 public class DataParser {
 
@@ -41,19 +42,6 @@ public class DataParser {
 
     private static void parseNumberOfNodes(Scanner in)
     {
-        /*
-        in.nextLine(); // data;
-        String line = in.nextLine();
-        String[] words = line.split(" ");
-        int numberOfNodes = Integer.parseInt( words[ words.length -1 ]);
-        ArrayNodeCollection.getInstance().setNumberOfNodes( numberOfNodes );
-        non = numberOfNodes;
-        in.nextLine(); // ;
-        line = in.nextLine();
-        while( line.equals(" ")){
-            line = in.nextLine();
-        }
-        */
         in.nextLine(); // data;
         in.next();
         String key = in.next();
@@ -80,6 +68,7 @@ public class DataParser {
 
     private static void parseNodes(Scanner in)
     {
+        new NodeCollection();
         int non = Parameters.getNumberOfNodes();
         in.next(); // param
         in.next(); // coordX
@@ -97,12 +86,11 @@ public class DataParser {
             counter++;
         }
 
-        String s;
-        s = in.next(); // ;
-        s = in.next(); // param
-        s = in.next(); // coordY
-        s = in.next(); // [*]
-        s = in.next(); // :=
+        in.next(); // ;
+        in.next(); // param
+        in.next(); // coordY
+        in.next(); // [*]
+        in.next(); // :=
 
         counter = 0;
         while( counter <= non)
@@ -114,11 +102,19 @@ public class DataParser {
         }
 
         counter = 0;
-        ArrayNodeCollection coll = ArrayNodeCollection.getInstance();
-        while( counter < non )
+        //ArrayNodeCollection coll = ArrayNodeCollection.getInstance();
+        while( counter <= non )
         {
             Node n = new Node(counter, coordX[counter], coordY[counter]);
-           coll.add(counter, n);
+            if(counter == 0)
+            {
+                Parameters.setSchool(n);
+            }
+            else
+            {
+                //coll.add(counter, n);
+                NodeCollection.insertNode(n);
+            }
             counter++;
         }
     }

@@ -28,7 +28,7 @@ public class ArrayNodeCollection {
 
     public void add(int index, Node n)
     {
-        nodes.add(index, n);
+        nodes.add(n);
     }
     
     public List<Node> getNodes()
@@ -40,6 +40,7 @@ public class ArrayNodeCollection {
     {
         for(Node head: nodes)
         {
+            addToStar(head, Parameters.getSchool());
             for(Node tail: nodes)
             {
                 if(head != tail)
@@ -51,8 +52,8 @@ public class ArrayNodeCollection {
     }
     private void addToStar(Node head, Node tail) {
         double arcLenght = head.distance(tail);
-        double d1 = head.distance( ArrayNodeCollection.getInstance().getNode(0) );
-        double d2 = tail.distance( ArrayNodeCollection.getInstance().getNode(0));
+        double d1 = head.distance( Parameters.getSchool() );
+        double d2 = tail.distance( Parameters.getSchool() );
 
         /*
         If going from the head to school through the head is too expensive, arc is not added
@@ -61,7 +62,6 @@ public class ArrayNodeCollection {
         {
             tail.addToForwardStar( head );
             head.addToBackwardStar( tail );
-            Solution.add(tail.index, head.index);
         }
     }
 

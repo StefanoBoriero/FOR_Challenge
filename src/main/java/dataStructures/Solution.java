@@ -1,6 +1,10 @@
 package dataStructures;
 
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
 
 /**
  * Created by Stefano on 12/02/2017.
@@ -15,10 +19,10 @@ public class Solution {
     public Solution()
     {
         int non = Parameters.getNumberOfNodes();
-        solution = new Integer[non ][non ];
-        for(int i=0; i< non; i++)
+        solution = new Integer[non + 1][non + 1];
+        for(int i=0; i<= non; i++)
         {
-            for(int j=0; j< non; j++)
+            for(int j=0; j<= non; j++)
             {
                 solution[i][j]=0;
             }
@@ -28,8 +32,8 @@ public class Solution {
     @Override
     public String toString()
     {
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
         int non = Parameters.getNumberOfNodes();
         String out = "";
 
@@ -37,7 +41,7 @@ public class Solution {
         {
             for(y = 0; y <= non ; y++)
             {
-                if(/*solution[x][y] == 1*/true)
+                if(solution[x][y] == 1)
                 {
                     out = out + x + " " + y + "\n";
                 }
@@ -53,10 +57,10 @@ public class Solution {
         int j;
         int non = Parameters.getNumberOfNodes();
 
-        for(i=0; i< non; i++)
+        for(i=0; i<= non; i++)
         {
             String line = "";
-            for(j=0; j< non; j++)
+            for(j=0; j<= non; j++)
             {
                 line = line + solution[i][j] + ", ";
             }
@@ -68,5 +72,39 @@ public class Solution {
     public static void add(int x, int y)
     {
         solution[x][y] = 1;
+    }
+
+    public static void writeSolution()
+    {
+        String aux = Parameters.getFilename();
+        String filename;
+        String[] tmp = aux.split(".dat");
+        filename = tmp[0] + ".sol";
+        File outputFile = new File(filename);
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter( new FileOutputStream( outputFile ) );
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int x;
+        int y;
+
+
+        for(x=0; x<= Parameters.getNumberOfNodes(); x++)
+        {
+            for(y=0; y<= Parameters.getNumberOfNodes(); y++)
+            {
+                if(solution[x][y] == 1)
+                {
+                    String s;
+                    s = x + " " + y;
+                    out.println(s);
+                    out.flush();
+                }
+            }
+        }
+
     }
 }

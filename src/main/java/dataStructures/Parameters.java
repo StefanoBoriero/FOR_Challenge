@@ -10,8 +10,18 @@ public class Parameters {
     private static int numberOfNodes;
     private static double alpha;
     private static double[][] danger;
+    private static Node school;
+    private static String filename;
 
+    public static void setFilename(String fn)
+    {
+        filename = fn;
+    }
 
+    public static String getFilename()
+    {
+        return filename;
+    }
     public static void setNumberOfNodes(int non)
     {
         numberOfNodes = non;
@@ -45,6 +55,16 @@ public class Parameters {
     public static double getDanger(int index1, int index2)
     {
     	return danger[index1][index2];
+    }
+
+    public static void setSchool(Node s)
+    {
+        school = s;
+    }
+
+    public static Node getSchool()
+    {
+        return school;
     }
 
 }
